@@ -1,0 +1,216 @@
+:host {
+    display: block;
+    color: var(--dxp-g-root-contrast, #181818);
+}
+
+.compare {
+    padding-bottom: 6rem; /* room for the compare tray */
+}
+
+.compare-title {
+    margin: 0 0 1rem;
+    font-size: var(--dxp-s-text-heading-large-font-size, 1.75rem);
+}
+
+.compare-info {
+    color: var(--dxp-g-neutral-contrast, #444);
+}
+
+.compare-error {
+    color: var(--dxp-g-destructive, #ba0517);
+}
+
+/* Horizontal scroll when the products don't fit the screen. */
+.compare-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.compare-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 100%;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--dxp-g-neutral, #e5e5e5);
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+
+/* Attribute label column stays visible while the products scroll. */
+.label-cell {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: 10rem;
+    min-width: 10rem;
+    background: var(--dxp-g-root, #fff);
+    font-weight: 600;
+}
+
+.product-cell,
+.compare-table td {
+    width: 14rem;
+    min-width: 14rem;
+}
+
+.product-cell {
+    position: relative;
+    font-weight: normal;
+}
+
+.product-image {
+    height: 9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.product-name {
+    color: var(--dxp-g-brand, #0176d3);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.product-name:hover {
+    text-decoration: underline;
+}
+
+.remove-button {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background: none;
+    border: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.quantity input {
+    width: 4.5rem;
+    padding: 0.375rem;
+    border: 1px solid var(--dxp-g-neutral, #c9c9c9);
+    border-radius: 0.25rem;
+    font: inherit;
+}
+
+.action-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: var(--dxp-s-button-radius-border, 0.25rem);
+    font: inherit;
+    cursor: pointer;
+}
+
+.action-button_primary {
+    background: var(--dxp-g-brand, #0176d3);
+    color: var(--dxp-g-brand-contrast, #fff);
+    border: 1px solid var(--dxp-g-brand, #0176d3);
+}
+
+.action-button:disabled {
+    background: var(--dxp-g-neutral, #e5e5e5);
+    border-color: var(--dxp-g-neutral, #e5e5e5);
+    color: var(--dxp-g-neutral-contrast, #6b6b6b);
+    cursor: not-allowed;
+}
+
+.quantity input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.stock {
+    font-weight: 600;
+}
+
+.stock_in {
+    color: var(--dxp-g-success, #2e844a);
+}
+
+.stock_out {
+    color: var(--dxp-g-destructive, #ba0517);
+}
+
+.action-button_secondary {
+    background: transparent;
+    color: var(--dxp-g-brand, #0176d3);
+    border: 1px solid var(--dxp-g-brand, #0176d3);
+}
+
+.status {
+    margin: 0;
+    font-size: 0.8125rem;
+}
+
+.status_success {
+    color: var(--dxp-g-success, #2e844a);
+}
+
+.status_error {
+    color: var(--dxp-g-destructive, #ba0517);
+}
+
+.assistive-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* Tablet: narrower columns. */
+@media (max-width: 1023px) {
+    .product-cell,
+    .compare-table td {
+        width: 12rem;
+        min-width: 12rem;
+    }
+}
+
+/* Mobile: about two products visible; swipe for more. */
+@media (max-width: 767px) {
+    .label-cell {
+        width: 6.5rem;
+        min-width: 6.5rem;
+        font-size: 0.8125rem;
+    }
+
+    .product-cell,
+    .compare-table td {
+        width: 9.5rem;
+        min-width: 9.5rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+        padding: 0.5rem;
+    }
+
+    .product-image {
+        height: 6rem;
+    }
+}

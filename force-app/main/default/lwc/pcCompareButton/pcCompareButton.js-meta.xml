@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Product Compare Button</masterLabel>
+    <description>Compare checkbox for a product. Place it on the product detail page.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" type="String" label="Product Id" default="{!Route.recordId}" />
+            <property name="label" type="String" label="Label" default="Compare" translatable="true" />
+            <property
+                name="limitMessage"
+                type="String"
+                label="Limit Message ({0} = max products)"
+                default="You can compare up to {0} products. Remove a product to add another."
+                translatable="true" />
+            <property
+                name="categoryMessage"
+                type="String"
+                label="Category Message ({0} = compare category)"
+                default="Only products from {0} can be compared together."
+                translatable="true" />
+            <property
+                name="suggestionsTitle"
+                type="String"
+                label="Suggestions Title"
+                default="Compare these instead"
+                translatable="true" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

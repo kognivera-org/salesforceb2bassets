@@ -1,0 +1,143 @@
+<template>
+    <template lwc:if={enabled}>
+        <section class="compare">
+            <h1 class="compare-title">{title}</h1>
+
+            <p
+                lwc:if={loading}
+                class="compare-info">
+                Loading…
+            </p>
+            <p
+                lwc:if={error}
+                class="compare-error"
+                role="alert">
+                {error}
+            </p>
+            <p
+                lwc:if={showEmpty}
+                class="compare-info">
+                {emptyMessage}
+            </p>
+
+            <div
+                lwc:if={showTable}
+                class="compare-scroll">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                class="label-cell">
+                                <span class="assistive-text">Product</span>
+                            </th>
+                            <template
+                                for:each={columns}
+                                for:item="column">
+                                <th
+                                    key={column.id}
+                                    scope="col"
+                                    class="product-cell">
+                                    <button
+                                        type="button"
+                                        class="remove-button"
+                                        data-id={column.id}
+                                        aria-label={column.removeLabel}
+                                        title={column.removeLabel}
+                                        onclick={handleRemove}>
+                                        &times;
+                                    </button>
+                                    <div class="product-image">
+                                        <img
+                                            lwc:if={column.imageUrl}
+                                            src={column.imageUrl}
+                                            alt={column.name} />
+                                    </div>
+                                    <a
+                                        href="#"
+                                        class="product-name"
+                                        data-id={column.id}
+                                        onclick={handleProductClick}>
+                                        {column.name}
+                                    </a>
+                                </th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template
+                            for:each={rows}
+                            for:item="row">
+                            <tr key={row.key}>
+                                <th
+                                    scope="row"
+                                    class="label-cell">
+                                    {row.label}
+                                </th>
+                                <template
+                                    for:each={row.cells}
+                                    for:item="cell">
+                                    <td
+                                        key={cell.key}
+                                        class={cell.className}>
+                                        {cell.value}
+                                    </td>
+                                </template>
+                            </tr>
+                        </template>
+                        <tr lwc:if={showActions}>
+                            <th
+                                scope="row"
+                                class="label-cell">
+                                <span class="assistive-text">Actions</span>
+                            </th>
+                            <template
+                                for:each={columns}
+                                for:item="column">
+                                <td
+                                    key={column.id}
+                                    class="actions-cell">
+                                    <template lwc:if={showAddToCart}>
+                                        <label class="quantity">
+                                            <span>Qty</span>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                step="1"
+                                                value={column.quantity}
+                                                data-id={column.id}
+                                                disabled={column.outOfStock}
+                                                onchange={handleQuantityChange} />
+                                        </label>
+                                        <button
+                                            type="button"
+                                            class="action-button action-button_primary"
+                                            data-id={column.id}
+                                            disabled={column.outOfStock}
+                                            onclick={handleAddToCart}>
+                                            {column.addToCartLabel}
+                                        </button>
+                                    </template>
+                                    <button
+                                        lwc:if={showAddToList}
+                                        type="button"
+                                        class="action-button action-button_secondary"
+                                        data-id={column.id}
+                                        onclick={handleAddToList}>
+                                        {addToListText}
+                                    </button>
+                                    <p
+                                        lwc:if={column.status}
+                                        class={column.status.className}
+                                        role="status">
+                                        {column.status.text}
+                                    </p>
+                                </td>
+                            </template>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </template>
+</template>

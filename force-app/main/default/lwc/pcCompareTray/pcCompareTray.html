@@ -1,0 +1,66 @@
+<template>
+    <template lwc:if={showTray}>
+        <section
+            class={trayClass}
+            aria-label={title}>
+            <div class="tray-header">
+                <button
+                    type="button"
+                    class="tray-toggle"
+                    aria-expanded={expanded}
+                    aria-label={toggleLabel}
+                    onclick={handleToggle}>
+                    <span class="tray-title">{title}</span>
+                    <span
+                        lwc:if={categoryText}
+                        class="tray-category">
+                        {categoryText}
+                    </span>
+                    <span class="tray-count">{countText}</span>
+                </button>
+            </div>
+
+            <ul class="tray-items">
+                <template
+                    for:each={items}
+                    for:item="item">
+                    <li
+                        key={item.id}
+                        class="tray-item">
+                        <img
+                            lwc:if={item.imageUrl}
+                            class="tray-image"
+                            src={item.imageUrl}
+                            alt="" />
+                        <span class="tray-name">{item.name}</span>
+                        <button
+                            type="button"
+                            class="tray-remove"
+                            data-id={item.id}
+                            aria-label={item.removeLabel}
+                            title={item.removeLabel}
+                            onclick={handleRemove}>
+                            &times;
+                        </button>
+                    </li>
+                </template>
+            </ul>
+
+            <div class="tray-actions">
+                <button
+                    type="button"
+                    class="tray-button tray-button_secondary"
+                    onclick={handleClearAll}>
+                    {clearAllText}
+                </button>
+                <button
+                    type="button"
+                    class="tray-button tray-button_primary"
+                    disabled={compareDisabled}
+                    onclick={handleCompare}>
+                    {compareLabel}
+                </button>
+            </div>
+        </section>
+    </template>
+</template>
