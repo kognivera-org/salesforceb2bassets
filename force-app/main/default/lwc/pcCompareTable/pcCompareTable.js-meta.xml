@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Product Compare Table</masterLabel>
+    <description>Side-by-side comparison of the products the buyer selected. Place it on the compare page.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="title" type="String" label="Title" default="Compare Products" translatable="true" />
+            <property
+                name="emptyMessage"
+                type="String"
+                label="Empty Message"
+                default="You have not selected any products to compare."
+                translatable="true" />
+            <property name="showAddToCart" type="Boolean" label="Show Add to Cart" default="true" />
+            <property name="showAddToList" type="Boolean" label="Show Add to List" default="true" />
+            <property name="addToCartText" type="String" label="Add to Cart Text" default="Add to cart" translatable="true" />
+            <property name="addToListText" type="String" label="Add to List Text" default="Add to list" translatable="true" />
+            <property name="outOfStockText" type="String" label="Out of Stock Text" default="Out of stock" translatable="true" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

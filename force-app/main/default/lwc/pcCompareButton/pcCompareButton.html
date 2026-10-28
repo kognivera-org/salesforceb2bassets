@@ -1,0 +1,81 @@
+<template>
+    <template lwc:if={showButton}>
+        <div class="compare" onclick={handleClick}>
+            <label class="compare-label">
+                <input
+                    type="checkbox"
+                    class="compare-checkbox"
+                    checked={checked}
+                    disabled={checking}
+                    onchange={handleChange} />
+                <span>{label}</span>
+            </label>
+            <p
+                lwc:if={message}
+                class="compare-message"
+                role="alert">
+                {message}
+            </p>
+
+            <div
+                lwc:if={popup}
+                class="popup"
+                style={popupStyle}
+                role="dialog"
+                aria-label={suggestionsTitle}
+                onkeydown={handlePopupKeydown}>
+                <div class="popup-header">
+                    <p class="popup-message" role="alert">{popup.message}</p>
+                    <button
+                        type="button"
+                        class="popup-close"
+                        aria-label="Close"
+                        title="Close"
+                        onclick={closePopup}>
+                        &times;
+                    </button>
+                </div>
+                <template lwc:if={hasSuggestions}>
+                    <p class="popup-title">{suggestionsTitle}</p>
+                    <ul class="popup-list">
+                        <template
+                            for:each={suggestions}
+                            for:item="suggestion">
+                            <li
+                                key={suggestion.id}
+                                class="popup-item">
+                                <img
+                                    lwc:if={suggestion.imageUrl}
+                                    class="popup-image"
+                                    src={suggestion.imageUrl}
+                                    alt="" />
+                                <div class="popup-text">
+                                    <a
+                                        href="#"
+                                        class="popup-name"
+                                        data-id={suggestion.id}
+                                        onclick={handleSuggestionOpen}>
+                                        {suggestion.name}
+                                    </a>
+                                    <span
+                                        lwc:if={suggestion.price}
+                                        class="popup-price">
+                                        {suggestion.price}
+                                    </span>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="popup-button"
+                                    data-id={suggestion.id}
+                                    aria-label={suggestion.compareLabel}
+                                    onclick={handleSuggestionCompare}>
+                                    {suggestionButtonText}
+                                </button>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>ProductCompareController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Product_Compare_Attribute__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Product_Compare_Setting__mdt</name>
+    </customMetadataTypeAccesses>
+    <description>Lets B2B storefront buyers use Product Compare.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Product Compare Buyer</label>
+</PermissionSet>
